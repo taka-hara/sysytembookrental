@@ -5,3 +5,26 @@
 .footer {
 	text-align: right;
 }
+
+.description{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 5px;
+}
+
+.content {
+	margin-left: 10px;
+	padding-right: 10px;
+}
+
+.search{
+	margin-left: 20px;
+}
+
+.add{
+	margin-left: 20px;
+}
+
+.delete{
+	margin-left: 20px;
+}
