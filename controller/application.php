@@ -1,10 +1,9 @@
 <?php
 
-require_once '/vendor/Twig/Autoloader.php';
-require_once '/lib/config.php';
+require_once VENDOR_DIR . '/Twig/Autoloader.php';
 
-class Application {
-
+class Application
+{
     protected $data = array();
     protected $template;
 
@@ -17,8 +16,8 @@ class Application {
         $this->twig = new Twig_Environment($this->twig_loader, array('cache' => false));
     }
 
-    public function dispatch() {
-
+    public function dispatch()
+    {
         $action = isset($_POST['action']) ? $_POST['action'] : '';
 
         // 初期表示
@@ -39,7 +38,11 @@ class Application {
      */
     public function h($string)
     {
-        return htmlspecialchars($string, ENT_QUOTES);
+        if (is_array($string)) {
+            return array_map(array($this,'h'), $string);
+        } else {
+            return htmlspecialchars($string, ENT_QUOTES);
+        }
     }
 
     /*
@@ -50,9 +53,9 @@ class Application {
         $this->redirect_url = $url;
     }
 
-    private function output() {
-
-        $page = $this->template . '.tpl';
+    private function output()
+    {
+        $page = $this->template . '.twig.tpl';
         $tmp = $this->twig->load($page);
         echo $tmp->render($this->data);
 

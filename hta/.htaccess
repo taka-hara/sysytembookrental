@@ -1,0 +1,23 @@
+AuthUserfile /.htpasswd
+AuthGroupfile /dev/null
+AuthName "Please enter your ID and password"
+AuthType Basic
+require valid-user
+
+DirectoryIndex index.html index.htm index.shtml index.cgi index.php index.hdml default.html default.htm default.shtml default.cgi default.php default.hdml /errmsg.html
+
+AuthUserfile /home/un-tstaging/www/device-system.un-tcheck.com/systembookrental/.htpasswd
+AuthGroupfile /dev/null
+AuthName "device-system.un-tcheck.com/systembookrental/"
+AuthType Basic
+require valid-user
+
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ index.php [L]
+</IfModule>
